@@ -4,6 +4,13 @@
   grid-template-rows: repeat(3, 1fr);
 
   border: 2px solid green;
+
+
+  grid-template-areas: 
+  "A B B"
+  "A B B"
+  "A C D"
+  ;
 }
 
 #app > div {

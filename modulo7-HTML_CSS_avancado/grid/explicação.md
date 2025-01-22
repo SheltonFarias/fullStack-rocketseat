@@ -12,7 +12,9 @@ Todo grid é composto de 2 principais grupos:
   - grid-template-columns
   - grid-template-rows
   - grid-template-areas
-
+- gap
+  - row-gap
+  - column-gap
 
 ----
 
