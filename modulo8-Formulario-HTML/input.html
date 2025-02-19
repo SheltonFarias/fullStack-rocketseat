@@ -1,0 +1,54 @@
+<form action="">
+  <input value="teste" size="" autocomplete="" type="text" name="nome" />
+</form>
+
+<!-- type => vai dar a opção de escolher o tipo -->
+<!-- autocomplete => vai completar o input baseado no modelo -->
+<!-- size => aumentar ou diminuir o input -->
+<!-- autofocus => da enfase no campo indicado -->
+<!-- disable => desabilita o campo -->
+<!-- form => aponta para um formulario -->
+<!-- required => socilita o preenchimento do campo -->
+<!-- step => salto entre os numeros  -->
+
+<form action="">
+  <input type="number" min="" max="" step="2" />
+  <!--tipo number deixa somento o preenchimento de numeros, podendo ser informado em min e max-->
+  <button>Submit</button>
+</form>
+
+<form action="">
+  <input type="email" name="" id="" />
+  <!--traz um minima validação do email-->
+  <button>Submit</button>
+</form>
+
+<!-- multiple => traz a possibilidade de passar mais de 1 email -->
+<!-- minlength => traz o numero de caracteres minimos -->
+<!-- maxlength => traz o numero de caracteres maximos -->
+<!-- pattern => permite um expressão regular para validação do email -->
+
+<form action="">
+  <input type="password" />
+  <button>Submit</button>
+</form>
+<!-- minlength => traz o numero de caracteres minimos -->
+<!-- maxlength => traz o numero de caracteres maximos -->
+<!-- pattern => permite um expressão regular para validação da senha -->
+
+<form action="" enctype="multipart/form-data" accept=".html">
+  <input type="file" multiple/>
+  <button>Submit</button>
+</form>
+<!-- enctype="multipart/form-data" sempre informado esse parametro -->
+<!-- multiple => permite enviar mais de 1 arquivo -->
+<!-- accept => informa os arquivos autorizados -->
+
+<form action="">
+  <input type="range" name="total" min="20" max="200" step="20"/>
+  <button>Submit</button>
+</form>
+
+<!-- min e max => informa minimo e maximo que pode ser passado -->
+<!-- step => vai informar o salto dos numeros  -->
+<!-- value => vai setar o valor inicial -->
