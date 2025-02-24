@@ -43,7 +43,7 @@
 
               <div class="input-wrapper">
                 <label for="birth">Data de nascimento</label>
-                <input type="date" id="birth" lang="pt-br"/>
+                <input type="date" id="birth" lang="pt-br" />
               </div>
 
               <div class="select-wrapper">
@@ -55,23 +55,29 @@
                 </select>
               </div>
 
-
               <div class="textarea-wrapper">
                 <label for="medical-info">Informações médicas</label>
-                <textarea name="medical-info" id="medical-info"
-                  cols="30" rows="10" placeholder="A criança possui alguma condição medica que a escola deve estar ciente? (Se sim, especifique)"
+                <textarea
+                  name="medical-info"
+                  id="medical-info"
+                  cols="30"
+                  rows="5"
+                  placeholder="A criança possui alguma condição medica que a escola deve estar ciente? (Se sim, especifique)"
                 ></textarea>
               </div>
 
               <div class="droparea-wrapper">
-                <input type="file" id="birth-file" name="birth-file">
-                <img src="assets/icons/cloud-upload.svg" alt="">
-                <p>
-                  clique aqui para <br>
-                  selecionar os arquivos
-                </p>
-              </div>
+                <label for="birth-file">Certidão de Nascimento</label>
 
+                <div class="dropzone">
+                  <input type="file" id="birth-file" name="birth-file" />
+                  <img src="assets/icons/cloud-upload.svg" alt="" />
+                  <p>
+                    clique aqui para <br />
+                    selecionar os arquivos
+                  </p>
+                </div>
+              </div>
             </fieldset>
           </form>
         </div>
