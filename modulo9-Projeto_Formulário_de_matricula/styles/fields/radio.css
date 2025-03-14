@@ -45,5 +45,11 @@ label + .radio-wrapper {
     }
   }
 
-  &:has(:checked)
+  &:has(:checked) {
+    border: 2px solid var(--stroke-hightlight);
+
+    & .radio-image {
+      background-image: url(../../assets/icons/radio-checked.svg);
+    }
+  }
 }
