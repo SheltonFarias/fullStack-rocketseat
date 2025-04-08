@@ -35,7 +35,7 @@
   --py-base: 1rem;
   --py-lg: 1.5rem;
   --py-xl: 3rem;
-  --px-lg:1.5rem;
+  --px-lg: 1.5rem;
 }
 
 html {
@@ -74,6 +74,18 @@ h3 {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:hover {
+  background: linear-gradient(
+    90deg,
+    var(--brand-color-secondary) 0%,
+    var(--brand-color-primary) 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 ul[role="list"] {
