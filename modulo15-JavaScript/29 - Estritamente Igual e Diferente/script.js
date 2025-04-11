@@ -1,15 +1,14 @@
-let one = 1
-let two = 2
+let one = 1;
+let two = 2;
 
-console.log("== IGUAL A")
-// == igual a
-console.log(one == 1) // true
-console.log(one == two) // false  
-console.log(one == "1") // true
+// === Estritamente Igual e Diferente
+console.log(one === 1); // true
+console.log(one === "1"); // false
+console.log(two === 2); // true
+console.log(two === "2"); // false
 
-
-console.log("!= DIFERENTE DE")
-// != diferente de
-console.log(one != two) // true
-console.log(one != 1) // false'
-console.log(one != "1") // false
+// !== Estritamente Diferente de
+console.log(one !== 1); // false
+console.log(one !== "1"); // true
+console.log(two !== 2); // false
+console.log(two !== "2"); // true
