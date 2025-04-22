@@ -6,6 +6,9 @@ const GBP = 6.08;
 const form = document.querySelector("form");
 const amount = document.getElementById("amount");
 const currency = document.getElementById("currency");
+const footer = document.querySelector("main footer");
+const description = document.getElementById("description");
+const result = document.getElementById("result");
 
 // Manipulando o input amout para receber somente números
 amount.addEventListener("input", () => {
@@ -30,4 +33,38 @@ form.onsubmit = (event) => {
 };
 
 // função para converter a moeda.
-function convertCurrency(amount, price, symbol) {}
+function convertCurrency(amount, price, symbol) {
+  try {
+    // Exibindo a contação da moeda seleciona
+    description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
+
+    // Calcula o total
+    let total = amount * price
+
+    // Verifica se o resultado Não é um numero
+   if(isNaN(total)) {
+    return alert("Por favor, digite o valor corretamente para converter")
+   }
+    
+    // Formatar valor total
+    total = formatCurrencyBRL(total).replace("R$", "")
+
+    //Exibe resultado total
+    result.textContent = `${total} Reais`;
+
+    // aplica a classe que exibe o footer para mostrar o resultado
+    footer.classList.add("show-result");
+  } catch (error) {
+    console.log(error);
+    footer.classList.remove("show-result");
+    alert("Não foi possivel converter. Tente novamente mais tarde");
+  }
+}
+
+// Formata a moeda para real brasileiro
+function formatCurrencyBRL(value) {
+  return Number(value).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
