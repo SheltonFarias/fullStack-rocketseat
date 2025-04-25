@@ -7,4 +7,4 @@ console.log(fullName.split(" "))
 
 
 // cria um array com as letras.
-console.log(Array.from(fullName ))
+console.log(Array.from(fullName))
