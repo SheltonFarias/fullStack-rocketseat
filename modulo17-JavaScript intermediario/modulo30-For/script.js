@@ -27,3 +27,9 @@ console.log(`7x8 = ${7 * 8}`)
 console.log(`7x9 = ${7 * 9}`)
 console.log(`7x10 = ${7 * 10}`)
 
+// Tabuada Dinamica
+let number = 7
+
+for(step = 0 ;step <= 10; step++) {
+  console.log(`${number}x${step} = ${number * step}`)
+}
