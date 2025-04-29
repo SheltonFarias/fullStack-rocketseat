@@ -7,7 +7,6 @@ class MyCustomError {
 try {
   // throw new Error("erro generico")
 
-
   throw new MyCustomError("Erro personalizado Lançado")
 } catch (error) {
   
