@@ -49,7 +49,8 @@ function expanseAdd(newExpense) {
     const expenseItem = document.createElement("li")
     expenseItem.classList.add("expense")
 
-    // cria o ícone da categoria
+    // cria o ícone da categoria.
+    const expanseIcon = document.createElement("img")
 
   } catch (error) {
     alert("Não foi possivel atualizar a lista de despesas")
