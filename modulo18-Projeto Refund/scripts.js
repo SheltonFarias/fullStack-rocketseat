@@ -75,7 +75,7 @@ function expanseAdd(newExpense) {
     // Cria o valor da despesa.
     const expenseAmount = document.createElement("span")
     expenseAmount.classList.add("expense-amount")
-    expenseAmount.innerHTML = `<span>R$</span>${newExpense.amount.toUpperCase().replace("R$" , "")}`
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$" , "")}`
 
 
 
@@ -83,7 +83,7 @@ function expanseAdd(newExpense) {
     expenseItem.append(expanseIcon, expenseInfo, expenseAmount)
 
     // Adicona o item na lista.
-    expenseList.append(expenseItem)
+    expenseList.append(expenseItem) 
   } catch (error) {
     alert("Não foi possivel atualizar a lista de despesas");
     console.log(error);
