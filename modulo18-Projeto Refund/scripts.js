@@ -5,7 +5,8 @@ const expense = document.getElementById("expense");
 const category = document.getElementById("category");
 
 // Selecion os elementos da lista
-const expenseList = document.querySelector("ul")
+const expenseList = document.querySelector("ul");
+const expenseQuantity = document.querySelector("aside header p span");
 
 // Captura o evento de input para formatar o valor.
 amount.oninput = () => {
@@ -46,6 +47,7 @@ form.onsubmit = (event) => {
   expanseAdd(newExpense);
 };
 
+// Adiciona um novo item na lista
 function expanseAdd(newExpense) {
   try {
     // cria o elemento de li para adicionar o item (li) na lista(ul).
@@ -54,38 +56,70 @@ function expanseAdd(newExpense) {
 
     // cria o ícone da categoria.
     const expanseIcon = document.createElement("img");
-    expanseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`)
-    expanseIcon.setAttribute("alt", newExpense.category_name)
+    expanseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`);
+    expanseIcon.setAttribute("alt", newExpense.category_name);
 
-    // Cria a info da despesa 
-    const expenseInfo = document.createElement("div")
-    expenseInfo.classList.add("expense-info")
+    // Cria a info da despesa
+    const expenseInfo = document.createElement("div");
+    expenseInfo.classList.add("expense-info");
 
     // Cria o nome da despesa
-    const expenseName = document.createElement("strong")
-    expenseName.textContent = newExpense.expense
+    const expenseName = document.createElement("strong");
+    expenseName.textContent = newExpense.expense;
 
     // Cria a categoria da despesa.
-    const expenseCategory = document.createElement("span")
-    expenseCategory.textContent = newExpense.category_name
+    const expenseCategory = document.createElement("span");
+    expenseCategory.textContent = newExpense.category_name;
 
     // adicona name e category na div das informações da despesa
-    expenseInfo.append(expenseName, expenseCategory)
+    expenseInfo.append(expenseName, expenseCategory);
 
     // Cria o valor da despesa.
-    const expenseAmount = document.createElement("span")
-    expenseAmount.classList.add("expense-amount")
-    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$" , "")}`
+    const expenseAmount = document.createElement("span");
+    expenseAmount.classList.add("expense-amount");
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount
+      .toUpperCase()
+      .replace("R$", "")}`;
 
-
+    // cria o icone de remover
+    const removeIcon = document.createElement("img");
+    removeIcon.classList.add("remove-icon");
+    removeIcon.setAttribute("src", "img/remove.svg");
+    removeIcon.setAttribute("alt", "remover");
 
     // Adiciona as informações mo item.
-    expenseItem.append(expanseIcon, expenseInfo, expenseAmount)
+    expenseItem.append(expanseIcon, expenseInfo, expenseAmount, removeIcon);
 
     // Adicona o item na lista.
-    expenseList.append(expenseItem) 
+    expenseList.append(expenseItem);
+
+    //Atualiza os totais
+    updateTotals();
   } catch (error) {
     alert("Não foi possivel atualizar a lista de despesas");
     console.log(error);
+  }
+}
+
+// Atualizar os totais
+function updateTotals() {
+  try {
+    // Recupera todos os itens que são (li) da lista (ul)
+    const items = expenseList.children;
+
+    // atualiza a quantidade de itens da lista.
+    expensesQuantity.textContent = `${items.length} ${items > 1 ? "despesas" : "despesa"}`
+
+    // variavel para incrementar o total
+    let total = 0
+
+    // percorre cada item (li) da lista (ul)
+    for(let item = 0; item < items.length; item++){
+      const itemAmount = 0
+    }
+
+  } catch (error) {
+    console.log(error);
+    alert("Não foi possivel atualizar os totais");
   }
 }
