@@ -1,23 +1,22 @@
-// destructuring assignment (desestruturação) permite extrair dados de arrays ou objetos em variáveis distintas
+// destructuring assignment (desestruturação) permite extrair dados de array ou objetos em variáveis distintas.
 
-const data = ["teste testes", "teste@teste.com"];
+const product = {
+  description: "teclado",
+  price: 150,
+};
 
-// Desestruturando arrray
-const [username, email] = data;
+const { description, price } = product;
 
-console.log("nome:", username);
-console.log("email:", email);
+console.log("Descrição:", description);
+console.log("Preço: R$", price);
 
-const frutis = ["banana", "apple", "orange"];
+function newProduct({description, price}) {
+  console.log("### NOVO PRODUTO ###");
+  console.log("Descrição:", description);
+  console.log("Preço: R$", price);
+}
 
-// Desestruturar somente o primeiro
-const [banana] = frutis;
-console.log(banana);
-
-// ignorando o primeiro na desestruturação
-const [_, Apple] = frutis;
-
-console.log(Apple);
-
-// Ignorando o primeiro e o segundo na desestruturação.
-const [, , orange] = frutis;
+newProduct({
+  description: "mouse",
+  price: 70
+})
