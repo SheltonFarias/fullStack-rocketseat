@@ -14,4 +14,10 @@ const values = [1, 2, 3, 4, 5]
 const sum = values.reduce((accumulator, currentValue, index) => {
   console.log("ACUMULADOR", accumulator)
   console.log("CURRENT VALUE", currentValue)
-})
+  console.log("INDEX", index)
+
+  console.log("SOMA", accumulator + currentValue)
+  console.log("####################")
+
+  return accumulator + currentValue
+}, 0)
