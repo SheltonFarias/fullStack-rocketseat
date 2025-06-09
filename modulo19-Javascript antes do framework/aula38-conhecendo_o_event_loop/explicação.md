@@ -1,47 +1,87 @@
-# Caracteristica
+# 🧠 JavaScript Runtime e Event Loop
 
-### single threaded
-- Executa uma coisa por vez
+Este documento resume os principais conceitos relacionados à execução de código no JavaScript, com foco em comportamento assíncrono, event loop, microtasks e macrotasks.
+
+---
+
+## 📘 Características do JavaScript Runtime
+
+### 🧵 Single Threaded
+- JavaScript é **single-threaded**: executa **uma tarefa por vez**.
+- Utiliza uma **Call Stack** (pilha de chamadas) para gerenciar a execução de funções.
+
+### 🚫 Non-Blocking
+- Operações demoradas (como requisições HTTP ou timers) **não bloqueiam** o fluxo do programa.
+- Isso é possível graças ao **modelo assíncrono** e às **Web APIs** (no navegador) ou bindings do Node.js.
+
+### 🔁 Assíncrono
+- Para lidar com tarefas que demoram a retornar (como I/O), usamos:
+  - `callbacks`
+  - `Promises`
+  - `async/await`
+
+### ⚔️ Concorrência
+- Tarefas assíncronas **concorrerão** entre si para serem executadas assim que possível.
+- O controle disso é feito pelo **Event Loop**, que define a ordem de execução.
+
+---
+
+## 🔄 Event Loop
+
+O **Event Loop** é o mecanismo que coordena a execução entre tarefas síncronas e assíncronas.
+
+### Como funciona:
+
+1. O código síncrono é executado na **Call Stack**.
+2. Tarefas assíncronas (como `setTimeout`, `fetch`, etc.) são delegadas para as **Web APIs**.
+3. Após concluídas, seus callbacks são enviados para:
+   - **Microtask Queue** (alta prioridade)
+   - **Callback Queue** (macrotasks)
+4. O Event Loop:
+   - Verifica se a **Call Stack** está vazia.
+   - Executa todas as **microtasks** pendentes.
+   - Executa **uma** macrotask.
+   - Repete o processo.
+
+---
+
+## 🧠 Microtasks vs Macrotasks
+
+### Microtasks (Alta prioridade)
+- Executadas **antes de qualquer macrotask**.
+- Exemplos:
+  - `.then()` de Promises
+  - `queueMicrotask`
+
+### Macrotasks (Menor prioridade)
+- Executadas **após as microtasks**.
+- Exemplos:
+  - `setTimeout`, `setInterval`
+  - `setImmediate` (Node.js)
+  - Callbacks de eventos do DOM
+
+---
+
+## 📌 Fluxo Geral
+
+```
+
+---
+
+## 💡 Exemplo Prático
+
+```js
+console.log('Inicio');
+
+setTimeout(() => {
+  console.log('Macrotask - Timeout');
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log('Microtask - Promise');
+});
+
+console.log('Fim');
 
 
-### no-blocking
-- Não trava o contexto da execução
-
-
-### asynchronous
-- Por ser no-blocking precisa utilizar um paradigma assincrono para lidar com a execução das coisas.
-
-
-### concurrent
-As tarefas que executam assincronamente concorrem uma com as outras pelo processamento.
-
-Event loop
-- Tudo passa pela Call Stack. Algumas tarefas serão resolvidas nele mesmo e outras somente irá passar pela Call Stack sem fazer nada e será resolvida em alguma Web Api
-
-- O Event Loop é quem fica chegando constantemente a Call Stack e Callback Queue
-
-
-# micro e Macro Tasks
-Existem dois tipos principais de tarefas na fila de callback.
-
-### Microtasks:
-- São tarefas de alta prioridade que são executadas antes das macrotasks (Temporizados e promises)
-
-### Macrotasks:
-- São tarefas de menor prioridade, como callbacks de eventos, setTimeout e setInterval
-
-
-# Resumo
-
-.1 Execução de codigo:
-- O codigo sícrono é executado de cima para baixo,empilhando e desempilhando funções conforme necessário
-
-
-.2 Eventos Assícronos:
-- Quando ocorrem eventos assincronos, como uma requisição concluida, o callback corresponde é enfileirado na fila de callback
-
-.3 Verificação do Event Loop:
-- O Event Loop verifica a pilha de chamadas e a fila de callback. Se a pilha estiver vazia, ele move um callback da fila de callback para a pilha de chamadas.
-
-.4 Microtasks:
-- Antes de verificar novamente a fila de callback, o Event Loop executa todas as microtasks pendentes
+```
