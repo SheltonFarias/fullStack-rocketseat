@@ -13,7 +13,6 @@ async function fetchProducts() {
   console.log(data)
 }
 
-
 async function fetchProductById(id) {
   const response = await fetch(`http://localhost:3333/products/${id}`)
 }
