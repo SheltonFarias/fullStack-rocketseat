@@ -8,6 +8,12 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   mode: "development",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist", "index.html")
+    },
+    port:3001,
+  },
   plugins: [new HTMLWebpackPlugin()],
   module: {
     rules: [
@@ -30,4 +36,4 @@ module.exports = {
   },
 };
 
-// 
+// n
