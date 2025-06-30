@@ -1,4 +1,5 @@
 const path = require("path");
+const { Template, ModuleFilenameHelpers } = require("webpack");
 
 module.exports = {
   target: "web",
@@ -16,5 +17,21 @@ module.exports = {
     },
     port: 3002,
     open: true,
+    liveReload: true
   },
+
+  plugins: [new HmtlWebpackPlugin({
+    Template: path.resolve(__dirname, "index.html"),
+    favicon: path.resolve("src", "assets", "scissors.svg")
+  }),
+],
+
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: ["style-loader", "css-loader"],
+    },
+  ],
+},
 };
