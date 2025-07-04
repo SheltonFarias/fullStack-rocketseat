@@ -8,18 +8,24 @@ export function hoursLoad({ date }) {
   //Limpa a lista de horarios
   hours.innerHTML = ""
 
+  // Obtém a lista de horários ocupados.
+  const unavailableHours = dailySchedules.map((schedule) => dayjs(schedule.when).format("HH:mm"))
+
+  console.log(unavailableHours)
+
   const opening = openingHours.map((hour) => {
     // recupera somente a hora.
 
     const [scheduleHour] = hour.split(":");
-    console.log(scheduleHour);
 
     // Adiciona a hora na date e verificar se está no passado
-    const isHourPast = dayjs(date).add(scheduleHour, "hour").isAfter(dayjs());
+    const isHourPast = dayjs(date).add(scheduleHour, "hour").isBefore(dayjs());
+
+    const avaible = !unavailableHours.includes(hour) && !isHourPast 
 
     return {
       hour,
-      avaible: isHourPast
+      avaible
     }
   });
 
