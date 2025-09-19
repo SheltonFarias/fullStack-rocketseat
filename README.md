@@ -22,10 +22,7 @@
   - <span style=";">LinkedIn: [linkedin.com/in/sheltonfarias](https://www.linkedin.com/in/sheltonfarias)</span>
   - <span style=";">Email: [shelton@example.com](mailto:shelton@example.com)</span>
 
-- 🌟 **<span style=";">Fun Facts:</span>**
-  - 🚴‍♂️ <span style=";">I love cycling and exploring new trails.</span>
-  - 🎮 <span style="">Avid gamer with a preference for strategy and puzzle games.</span>
-  - 📚 <span style=";">Enjoy reading tech blogs and keeping up with the latest industry trends.</span>
+
 
 <span style=";">Feel free to explore my repositories and get in touch if you’d like to collaborate or just have a chat about technology!</span>
 
