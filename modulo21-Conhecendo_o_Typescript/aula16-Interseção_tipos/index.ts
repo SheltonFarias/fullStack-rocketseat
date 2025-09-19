@@ -3,11 +3,11 @@ type Person1 = {
   name:string
 }
 
-type Teacher1 = Person & {
+type Teacher1 = Person1 & {
   subjects: string[]
 }
 
-type Student1 =  Person &{
+type Student1 =  Person1 &{
   age: number
 }
 
