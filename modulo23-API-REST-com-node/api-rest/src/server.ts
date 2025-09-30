@@ -3,3 +3,5 @@ function sum(a:number, b:number): number {
 }
 
 const result: number = sum(5, 3)
+
+console.log(result)
