@@ -29,3 +29,9 @@ productsRoutes.post("/products", myMiddleware, (request, response) => {
 
   response.status(201).json({name, price, user_id: request.user_id})
 })
+
+
+# schema validation
+- Permite criar regras de validação para garantir que os dados recebidos ou manipulados seguem em conjunto predefinido de regras. Essas regras são definidas em um esquema, que descreve a forma esperada dos dados, incluindo tipo de dados, formatos de restrições
+
+- npm i zod@3.23.8 => instalação do validador de schemas 
