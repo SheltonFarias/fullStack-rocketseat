@@ -103,3 +103,78 @@ insert into courses (name) values ('Express.js');
 insert into courses (name) values ('Banco de dados');
 
 select * from courses
+
+create table students_address (
+  id integer primary key autoincrement,
+  students_id integer unique not null,
+  street text not null,
+  city text not null,
+
+  foreign key (students_id) references students(id)
+)
+
+insert into students_address (students_id, street, city) values (1, 'Rua São João', 'São Paulo')
+insert into students_address (students_id, street, city) values (2, 'Rua Dom Pedro', 'Rio de Janeiro')
+
+-- inner join
+select sa.id, sa.students_id, sa.street, sa.city, s.name
+from students_address as sa
+inner join students as s on s.id = sa.students_id
+
+
+-- Um curso tem muitos modulos: 1:N - Um para muitos
+create table course_modules (
+  id integer primary key autoincrement,
+  name text not null,
+  course_id integer not null,
+  
+  foreign key (course_id) references courses(id)
+)
+
+
+insert into course_modules 
+  (name, course_id) 
+values 
+  ('Fundamentos do CSS', 2),
+  ('Layout com CSS', 2), 
+  ('CSS Functions', 2);
+
+insert into course_modules 
+  (name, course_id) 
+values 
+  ('Fundamentos do HTML', 1),
+  ('Formulários', 1);
+
+
+select cm.id, cm.name, cm.course_id, c.name
+from course_modules as cm
+inner join courses as c on c.id = cm.course_id 
+
+
+/* N:M - Muito para Muitos
+
+students: 1 aluno pode fazer muitos cursos.
+courses: 1 curso poder ter muitos alunos.
+*/
+
+-- tabela pivo para fazer tabela muito para muitos
+create table students_courses (
+  id integer primary key autoincrement,
+  students_id integer not null,
+  course_id integer not null,
+
+  foreign key (students_id) references students(id),
+  foreign key (course_id) references courses(id)
+)
+
+
+insert into students_courses
+(students_id, course_id)
+values
+(1, 2)
+
+
+select sc.id, sc.students_id, s.name as student, sc.course_id, c.name as course
+from students_courses as sc 
+inner join students as s on s.id = sc.students_id
+inner join courses as c on c.id = sc.course_id
