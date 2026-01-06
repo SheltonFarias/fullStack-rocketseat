@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { knex } from "@/database/knex"
 import { z } from "zod"
 
 class ProductController {
@@ -17,7 +18,8 @@ class ProductController {
         price: z.number().gt(0, { message: "value must be greater than 0" }),
       })
 
-      const { name, price } = request.body
+      await knex("products").insert()
+
       return response.status(201).json({ message: "Created", name, price });
     } catch (error) {
       next(error);
