@@ -2,8 +2,10 @@
   "compilerOptions": {
     "target": "es2022",
     "lib": ["ES2023"],
+
+    "baseUrl": ".",
     "paths": {
-      "@/*":["./src/*"]
+      "@/*": ["./src/*"]
     },
 
     "module": "node16",
