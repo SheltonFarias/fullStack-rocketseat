@@ -74,10 +74,6 @@ class TablesSessionsController {
       next(error)
     }
   }
-
-
-
-
 }
 
 export { TablesSessionsController }
