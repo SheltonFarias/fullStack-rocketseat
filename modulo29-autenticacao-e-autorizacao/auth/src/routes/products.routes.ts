@@ -7,7 +7,12 @@ import { verifyUserAuthorization } from "@/middlewares/verifyUserAuthorization"
 const productsRoutes = Router()
 const productsController = new ProductsController()
 
+// Aplicar autorização em todas as rota a seguir
+// productsRoutes.use(verifyUserAuthorization(["sale", "admin"]))
+
 productsRoutes.get("/", productsController.index)
+
+// autorização em um rota especifica
 productsRoutes.post(
   "/",
   ensureAuthenticated,
