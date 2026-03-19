@@ -21,3 +21,5 @@ incremental => id e 1 em 1 Ex: 1, 2, 3 ...
 uuid => Baseado num padrão de hash
 
 npx prisma migrate dev
+
+npx prisma db seed // comando para criar seed(mapear o banco)
