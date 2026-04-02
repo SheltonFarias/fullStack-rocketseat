@@ -1,9 +1,9 @@
 import { AppError } from "@/utils/AppError";
 import { Request, Response } from "express";
 import { authConfig } from "@/configs/auth";
-import { prisma } from "@/database/prisma"
-import { compare } from "bcrypt";
+import { prisma } from "@/database/prisma";
 import { sign } from "jsonwebtoken";
+import { compare } from "bcrypt";
 import { z } from "zod";
 
 class SessionsController {
@@ -36,9 +36,9 @@ class SessionsController {
       expiresIn
     })
 
-    const {password: hashedPassword, ...userWithoutPassword} = user
+    const { password: hashedPassword, ...userWithoutPassword } = user
 
-    return response.json({token,user: userWithoutPassword})
+    return response.json({ token, user: userWithoutPassword })
   }
 }
 

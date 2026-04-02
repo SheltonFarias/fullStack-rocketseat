@@ -1,37 +1,36 @@
-import {Request, Response, NextFunction} from "express"
-import { Verify } from "jsonwebtoken"
-
+import { Request, Response, NextFunction } from "express"
+import { verify } from "jsonwebtoken"
 import { authConfig } from "@/configs/auth"
 import { AppError } from "@/utils/AppError"
-import { verify } from "crypto"
-
 
 interface TokenPayload {
   role: string
   sub: string
 }
 
-function ensureAuthenticated(request: Request, response:Response, next: NextFunction) {
-try {
-  const authHeader = request.headers.authorization
+function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
+  try {
+    const authHeader = request.headers.authorization
 
-  if(!authHeader) {
-    throw new AppError("JWT token not found")
+    if (!authHeader) {
+      throw new AppError("JWT token not found")
+    }
+
+    // Bearer 34343434364dfgdffgh
+    const [, token] = authHeader.split(" ")
+
+    const { role, sub: user_id } = verify(token, authConfig.jwt.secret) as TokenPayload
+
+    request.user = {
+      id: user_id,
+      role,
+    }
+
+    return next()
+
+  } catch (error) {
+    throw new AppError("Invalid JWT token", 401)
   }
-
-  // Bearer 34343434364dfgdffgh
-  const [, token] = authHeader.split(" ")
-
-  const {role, sub: user_id} = verify(token, authConfig.jwt.secret) as TokenPayload
-
-  request.user = {
-    id: user_id,
-    role,
-  }
-
-  return next()
-
-} catch (error) {
-  throw new AppError("Invalid JWT token", 401)
 }
-}
+
+export { ensureAuthenticated }
