@@ -1,0 +1,11 @@
+{
+  "name": "modulo33-gerenciando-dependencias-em-projeto-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.0",
+    "jsonwebtoken": "^9.0.0"
+  }
+}
