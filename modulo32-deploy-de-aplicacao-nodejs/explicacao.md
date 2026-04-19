@@ -5,3 +5,5 @@
 
 # Deploy
 - Passo final para colocar seu projeto em produção, permitindo que usuarios reais interajam com sua aplicação
+
+node --env-file=.env build/server.js comando para usar o .env na build para testar o funcionamento

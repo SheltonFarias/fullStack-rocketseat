@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "role" "UserRole" NOT NULL DEFAULT 'customer',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -24,7 +24,7 @@ CREATE TABLE "deliveries" (
     "description" TEXT NOT NULL,
     "status" "DeliveryStatus" NOT NULL DEFAULT 'processing',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "deliveries_pkey" PRIMARY KEY ("id")
 );
@@ -35,7 +35,7 @@ CREATE TABLE "delivery_logs" (
     "description" TEXT NOT NULL,
     "delivery_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "delivery_logs_pkey" PRIMARY KEY ("id")
 );

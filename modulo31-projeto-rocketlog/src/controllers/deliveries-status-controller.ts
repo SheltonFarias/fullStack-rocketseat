@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express"
 import { prisma } from "@/database/prisma"
-import z from "zod";
+import { z } from "zod"
 
 class DeliveriesStatusController {
   async update(request: Request, response: Response) {
@@ -28,11 +28,10 @@ class DeliveriesStatusController {
       data: {
         deliveryId: id,
         description: status,
-      }
+      },
     })
 
     return response.json()
-
   }
 }
 
