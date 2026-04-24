@@ -10,7 +10,6 @@ Para cada maquina temos uma instalação completa do sistema operacional alem de
 - Proporciona um ambiente isolado com os recursos que a sua aplicação precisa funcionar (como código, dependencias e bibliotecas necessarias para a executar a aplicação)
 
 ## Isolamento
-
 - Kernel: Coração de um sistema operacional que faz a ponte entre o software e o hardware e controla processos, memória, dispositivos e chamadas do sistema.
 
 - CGroups: é uma funcionalidade que controla e limita a alocação de recursos, tais como CPU, memoria, etc. O objetivo é não deixar que um conteiner monopolize os recursos do host para ter um ambiente equilibrado
@@ -18,7 +17,6 @@ Para cada maquina temos uma instalação completa do sistema operacional alem de
 - Namespace: Isola os recursos, um container so enxerga os seu proprios processos e arquivos
 
 ## Conceitos do Docker
-
 - Dockerfile: Contém todas as informações necessarias para gerar a nossa imagem docker
 
 - Imagem: Contém as informações de um ambiente com tudo que a nossa aplicação precisa para executar, por exemplo, codigo, dependencias e bibliotecas
