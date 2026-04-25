@@ -18,3 +18,7 @@ npm outdated ou npm out => verificar versões das dependencias
 npx npm-check-updates -u => vai atualizar os pacotes
 
 npx npm-check-updates --interactive --format group
+
+break change
+
+changelog => ferramenta para verificar alterações na versão
