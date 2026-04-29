@@ -14,3 +14,15 @@
 - Se tratando de uma SPA - Single Page Aplication
 
 - o React faz a rederição e criação da tag html e programação atraves de main.tsx que e que insere diretamente no html
+
+## Componentes
+um componente é como se fosse um lego, tendo peças especificas mas tendo a possibilidade de reutilização de peças
+
+### Beneficios da componentização
+- Reutilização de código
+- Produtividade
+- Isolamento de contexto
+- Legibilidade de código
+- Redução da complexidade
+- Arquivos menores
+- Padronização do projeto
