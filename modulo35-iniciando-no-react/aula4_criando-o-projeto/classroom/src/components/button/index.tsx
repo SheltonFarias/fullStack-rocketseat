@@ -1,4 +1,4 @@
-import type React from "react";
+import styles from "./styles.module.css";
 
 type Props =
   React.ComponentProps<"button"> /*Pegando tipagem do componente botão do HTML*/ & {
@@ -15,6 +15,13 @@ type Props =
 //   return <button onClick={onClick}>{name}</button>; // passar props entre {} para passar como propriedade
 // }
 
-export function Button({ name, ...rest }: Props) { // trazendo todos as propriedades do botão
-  return <button {...rest}>{name}</button>; 
+// className={styles.container} por se tratar de um ccs module pode ser passado dessa forma e pode se resgatar classes
+
+export function Button({ name, ...rest }: Props) {
+  // trazendo todos as propriedades do botão
+  return (
+    <button className={styles.container} {...rest}>
+      <span>{name}</span>
+    </button>
+  );
 }

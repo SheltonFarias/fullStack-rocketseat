@@ -26,3 +26,13 @@ um componente é como se fosse um lego, tendo peças especificas mas tendo a pos
 - Redução da complexidade
 - Arquivos menores
 - Padronização do projeto
+
+## Hooks
+- Permite usar estados e outros recursos sem escrever classes
+- Facilita reaproveitamento da logica
+
+### useState
+- Permite adicionar uma variavel de estado no componente
+
+### useEffect
+- Utilizado no ciclo de vida do componente e permite trabalhar com side-effects(efeitos colaterais)
