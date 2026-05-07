@@ -30,7 +30,7 @@ class SessionsController {
 
     const { secret, expiresIn } = authConfig.jwt
 
-    const token = sing({role: user.role}, secret, {
+    const token = sign({role: user.role}, secret, {
       subject: user.id,
       expiresIn,
     })
