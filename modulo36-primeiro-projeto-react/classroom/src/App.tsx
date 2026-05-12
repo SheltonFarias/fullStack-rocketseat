@@ -11,13 +11,19 @@ import { Header } from "./components/Header";
 import { LettersUsed, LetterUsedProps } from "./components/LettersUsed";
 
 function App() {
+  const [score, setScore] = useState(0);
   const [letter, setLetter] = useState("");
-  const [attempts, setAttempts] = useState(0);
   const [lettersUsed, setLetterUsed] = useState<LetterUsedProps>([]);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
 
+  const ATTEMPTS_MARGIN = 5;
+
   function handleRestartGame() {
-    alert("Reiniciar o jogo!");
+    const isConfirmed = window.confirm("Você tem certezza que deseja reiniciar?")
+
+    if(isConfirmed) {
+      startGame()
+    }
   }
 
   function startGame() {
@@ -25,13 +31,66 @@ function App() {
     const randomWord = WORDS[index];
     setChallenge(randomWord);
 
-    setAttempts(0);
+    setScore(0);
     setLetter("");
+    setLetterUsed([]);
+  }
+
+  function handleConfirm() {
+    if (!challenge) {
+      return;
+    }
+
+    if (!letter.trim()) {
+      return alert("Digite uma letra!");
+    }
+
+    const value = letter.toUpperCase();
+    const exists = lettersUsed.find(
+      (used) => used.value.toUpperCase() === value,
+    );
+    if (exists) {
+      return alert("você já utilizou a letra" + value);
+    }
+
+    const hits = challenge.word
+      .toUpperCase()
+      .split("")
+      .filter((char) => char === value).length;
+
+    const correct = hits > 0;
+    const currentScore = score + hits;
+    setLetterUsed((prevState) => [...prevState, { value, correct }]);
+    setScore(currentScore);
+    setLetter("");
+  }
+
+  function endGame(message: string) {
+    alert("message");
+    startGame();
   }
 
   useEffect(() => {
     startGame();
   }, []);
+
+  useEffect(() => {
+    if (!challenge) {
+      return;
+    }
+
+    setTimeout(() => {
+      if (score === challenge.word.length) {
+        return endGame("Parabéns, voce descobriu a palavra!");
+      }
+
+      const attemptlimit = challenge.word.length;
+
+      if (lettersUsed.length === attemptlimit) {
+        return endGame("Que pena, voce usou todas as tentativas!");
+      }
+    }, 200);
+  }, [score, lettersUsed.length]);
 
   if (!challenge) {
     return;
@@ -40,21 +99,40 @@ function App() {
   return (
     <div className={styles.container}>
       <main>
-        <Header current={attempts} max={10} onRestart={handleRestartGame} />
+        <Header
+          current={lettersUsed.lenght}
+          max={challenge.word.length + ATTEMPTS_MARGIN}
+          onRestart={handleRestartGame}
+        />
 
-        <Tip tip="Uma Linguagens de programação dinâmica" />
+        <Tip tip={challenge.tip} />
 
         <div className={styles.word}>
-          {challenge.word.split("").map(() => (
-            <Letter value="" />
-          ))}
+          {challenge.word.split("").map((letter, index) => {
+            const letterUsed = lettersUsed.find(
+              (used) => used.value.toUpperCase() === letter.toUpperCase(),
+            );
+
+            return (
+              <Letter
+                key={index}
+                value={letterUsed?.value}
+                color={letterUsed?.correct ? "correct" : "default"}
+              />
+            );
+          })}
         </div>
 
         <h4>Palpite</h4>
 
         <div className={styles.guess}>
-          <Input autoFocus maxLength={1} placeholder="?" />
-          <Button title="Confirmar" />
+          <Input
+            autoFocus
+            maxLength={1}
+            placeholder="?"
+            onChange={(e) => setLetter(e.target.value)}
+          />
+          <Button title="Confirmar" onClick={handleConfirm} />
         </div>
 
         <LettersUsed data={lettersUsed} />
