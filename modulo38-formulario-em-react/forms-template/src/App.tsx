@@ -1,16 +1,44 @@
 import "./App.css";
 
 import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+type FormData = {
+  name: string;
+  date: string;
+  subject: string;
+  description: string;
+};
+
+const schema = yup.object({
+  name: yup.string().required("Nome é obrigatorio"),
+  date: yup.string().required("Data é obrigatoria"),
+  subject: yup.string().required("Selecione um assunto"),
+  description: yup
+    .string()
+    .required("Descrição é obrigatoria")
+    .min(10, "A descrição precisa ter pelo menos 10 digitos"),
+});
 
 export default function App() {
-  const { control, handleSubmit } = useForm({defaultValues:{
-    name: "",
-  }});
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      name: "",
+      date: "",
+      subject: "",
+      description: "",
+    },
+    resolver: yupResolver(schema),
+  });
 
-  function onSubmit(data) {
+  function onSubmit(data: FormData) {
     console.log(data);
   }
-
 
   return (
     <div>
@@ -20,25 +48,55 @@ export default function App() {
         <Controller
           control={control}
           name="name"
-          render={({field}) => <input type="text" placeholder="Nome do evento" {...field}/>}
+          render={({ field }) => (
+            <input type="text" placeholder="Nome do evento" {...field} />
+          )}
+        />        
+        {errors.name?.message && <span className="error">{errors.date?.message}</span>}
+
+        <Controller
+          control={control}
+          name="date"
+          render={({ field }) => (
+            <input
+              type="date"
+              placeholder="Nome do evento"
+              lang="pt-BR"
+              {...field}
+            />
+          )}
         />
-        <input type="text" placeholder="Nome do evento" />
-        <span className="error">Nome é obrigatório</span>
 
-        <input type="date" placeholder="Nome do evento" lang="pt-BR" />
+        {errors.date?.message && <span className="error">{errors.date.message}</span>}
 
-        <select defaultValue="">
-          <option value="" disabled>
-            Selecione...
-          </option>
+        <Controller
+          control={control}
+          name="subject"
+          render={({ field }) => (
+            <select {...field}>
+              <option value="" disabled>
+                Selecione...
+              </option>
 
-          <option value="technology">React</option>
-          <option value="entertainment">Node.js</option>
-          <option value="business">Javascript</option>
-          <option value="business">Typescript</option>
-        </select>
+              <option value="technology">React</option>
+              <option value="entertainment">Node.js</option>
+              <option value="business">Javascript</option>
+              <option value="business">Typescript</option>
+            </select>
+          )}
+        />
 
-        <textarea placeholder="Descrição" rows={4} />
+        {errors.subject?.message && <span className="error">{errors.subject.message}</span>}
+
+        <Controller
+          control={control}
+          name="description"
+          render={({ field }) => (
+            <textarea placeholder="Descrição" rows={4} {...field} />
+          )}
+        />
+
+        {errors.description?.message && <span className="error">{errors.description.message}</span>}
 
         <button type="submit">Salvar</button>
       </form>
