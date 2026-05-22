@@ -1,3 +1,5 @@
+import { Routes } from "react-router"
+
 export function App() {
-  return <h1>Hello Word!</h1>
+  return <Routes/>
 }
