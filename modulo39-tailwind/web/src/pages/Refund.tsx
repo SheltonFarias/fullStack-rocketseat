@@ -6,27 +6,31 @@ import { Input } from "../components/Input";
 import { Select } from "../components/Select";
 import { Upload } from "../components/Upload";
 import { Button } from "../components/Button";
+import fileSvg from "../assets/assets/file.svg";
 
 export function Refund() {
-  const [name, setName] = useState("Teste")
-  const [amount, setAmount] = useState("34")
+  const [name, setName] = useState("Teste");
+  const [amount, setAmount] = useState("34");
   const [category, setCategory] = useState("Transport");
-  const [isLoading, setIsLoading] = useState(false)
-  const [filename, setFilename] = useState<File | null>(null)
+  const [isLoading, setIsLoading] = useState(false);
+  const [filename, setFilename] = useState<File | null>(null);
 
-  const navigate = useNavigate()
-  const params = useParams<{id: string}>()
-  console.log(params)
+  const navigate = useNavigate();
+  const params = useParams<{ id: string }>();
+  console.log(params);
 
   function onSubmit(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
-    console.log(name, amount, category, filename)
-    navigate("/confirm", {state:{fromSubmit: true}})
+    console.log(name, amount, category, filename);
+    navigate("/confirm", { state: { fromSubmit: true } });
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-gray-500 w-full rounded-xl flex flex-col p-10 gap-6 lg:min-w-[512px]">
+    <form
+      onSubmit={onSubmit}
+      className="bg-gray-500 w-full rounded-xl flex flex-col p-10 gap-6 lg:min-w-[512px]"
+    >
       <header>
         <h1 className="text-xl font-bold text-gra-gray-100">
           Solicitação de Reembolso
@@ -36,7 +40,13 @@ export function Refund() {
         </p>
       </header>
 
-      <Input required legend="Nome da solicitação"  value={name} onChange={(e) => setName(e.target.value)} disabled={!params.id}/>
+      <Input
+        required
+        legend="Nome da solicitação"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        disabled={!params.id}
+      />
 
       <div className="flex gap-4">
         <Select
@@ -52,13 +62,29 @@ export function Refund() {
           ))}
         </Select>
 
-        <Input legend="Valor" required  value={amount} onChange={(e) => setAmount(e.target.value)}/>
+        <Input
+          legend="Valor"
+          required
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
       </div>
 
-      <Upload filename={filename && filename.name} onChange={(e) => e.target.files && setFilename(e.target.files[0])}/>
+      {params.id ? (
+        <a href="test teste" target="blank" className="text-sm text-green-100 font-semibold flex items-center justify-center gap-2 my-6 hover:opacity-70 transition ease-linear">
+          <img src={fileSvg} alt="Ícone de arquivo" />
+          Abrir comprovante
+        </a>
+      ) : (
+        <Upload
+          filename={filename && filename.name}
+          onChange={(e) => e.target.files && setFilename(e.target.files[0])}
+        />
+      )}
 
-          <Button type="submit" isLoading={isLoading}>{params.id ? "Voltar" : "Enviar"}</Button>
-
+      <Button type="submit" isLoading={isLoading}>
+        {params.id ? "Voltar" : "Enviar"}
+      </Button>
     </form>
   );
 }
